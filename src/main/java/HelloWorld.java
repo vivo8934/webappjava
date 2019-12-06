@@ -10,6 +10,7 @@ public class HelloWorld {
     public static void main(String[] args) {
 
         staticFileLocation("/public");
+        getHerokuAssignedPort();
         get("/hello", (req, res) -> {
             Map<String, String> dataMap = new HashMap<>();
             dataMap.put("name", "Mfundo");
@@ -25,5 +26,12 @@ public class HelloWorld {
 
 //      initExceptionHandler((e) -> System.out.println("Uh-oh"));
 
+    }
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567;
     }
 }
