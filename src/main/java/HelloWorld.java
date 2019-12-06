@@ -10,7 +10,7 @@ public class HelloWorld {
     public static void main(String[] args) {
 
         staticFileLocation("/public");
-        getHerokuAssignedPort();
+        port(getHerokuAssignedPort());
         get("/hello", (req, res) -> {
             Map<String, String> dataMap = new HashMap<>();
             dataMap.put("name", "Mfundo");
